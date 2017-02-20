@@ -1,0 +1,32 @@
+{
+    "name": "cineca/translationbundle",
+    "description": "translation bundle from Database",
+    "type": "symfony-bundle",
+    "authors": [{
+        "name": "nephthali djabon tchounda",
+        "email": "neph@cineca.it"
+    }],
+    "keywords": [
+        "translation bundle"
+    ],
+    "license": [
+        "MIT"
+    ],
+    "require": {
+        "symfony/symfony": "2.8.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cineca\\TranslationBundle\\": ""
+        }
+    },
+    "repositories": [{
+        "type": "git",
+        "url": "https://git-miur.cineca.it/ndjabont/TranslationBundle.git"
+    }],
+    "extra": {
+        "branch-alias": {
+            "dev-master": "v1.0-dev"
+        }
+    }
+}
