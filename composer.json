@@ -13,7 +13,9 @@
         "MIT"
     ],
     "require": {
-        "symfony/symfony": "2.8.*"
+        "symfony/symfony": "2.8.*",
+        "doctrine/orm": "^2.4.8",
+        "doctrine/doctrine-bundle": "~1.4"
     },
     "autoload": {
         "psr-4": {
