@@ -1,0 +1,4 @@
+/vendor/
+/test/sf2app/cache/
+/test/sf2app/logs/
+/.git/
