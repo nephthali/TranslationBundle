@@ -28,7 +28,7 @@ class CinecaTranslationExtension extends Extension
         //Check tranlation classes
         if(empty($config['translation_classes']))
         {
-            echo "This bundle need classes to map translation";
+            echo "Cineca Translation bundle need classes to map translation";
             die;
         }
 
@@ -42,7 +42,7 @@ class CinecaTranslationExtension extends Extension
 
         if(isset($config['translation_classes']) && empty($config['translation_classes']['translation']))
         {
-            echo "This bundle need translation class to map translation messages";
+            echo "Cineca Translation bundle need translation class to map translation messages";
             die;
         }
 
