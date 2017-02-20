@@ -24,6 +24,27 @@ class Configuration implements ConfigurationInterface
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
 
+        $rootNode->
+            children()
+                ->arrayNode('translation_classes')
+                    ->canBeUnset()
+                    ->children()
+                        #->scalarNode('token')
+                        #    ->isRequired()
+                        #    ->cannotBeEmpty()
+                        #->end()
+                        ->scalarNode('translation')
+                            ->isRequired()
+                            ->cannotBeEmpty()
+                        ->end()
+                        #->scalarNode('language')
+                        #    ->isRequired()
+                        #    ->cannotBeEmpty()
+                        #->end()
+                    ->end()
+                ->end()
+            ->end();
+
         return $treeBuilder;
     }
 }

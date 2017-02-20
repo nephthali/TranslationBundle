@@ -4,13 +4,26 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
+
     <services>
-        <service id="cineca_translation.example" class="Cineca\TranslationBundle\Example">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="cineca_translation.connection" class="Cineca\TranslationBundle\Services\DBConnection">
+            <argument type="service" id="doctrine.dbal.default_connection" />
+        </service>
+        <service id="cineca_translation.loader" class="Cineca\TranslationBundle\Services\DBLoader">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="cineca_translation.connection" />
+            <argument type="service" id="service_container" />
+            <call method="registerResources">
+                <argument type="service" id="translator" />
+            </call>
+            <tag name="translation.loader" alias="db"/>
+        </service>
+        <service id="cineca_translation.dumper" class="Cineca\TranslationBundle\Services\DBDumper">
+            <!--argument type="service" id="doctrine.orm.entity_manager" /-->
+            <argument type="service" id="cineca_translation.connection" />
+            <!--argument type="service" id="service_container" /-->
+            <tag name="translation.dumper" alias="db"/>
         </service>
     </services>
-    -->
+
 </container>
