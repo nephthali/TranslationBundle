@@ -13,7 +13,8 @@ class DynamicServiceCompilerPass implements CompilePassInterface
     {
         if($container->hasParameter('cineca_translation.translation_classes.translation'))
         {
-            $definition = new Definition($container->getParameter('cineca_translation.translation_classes.translation')::class);
+            $translation_table = $container->getParameter('cineca_translation.translation_classes.translation');
+            $definition = new Definition($translation_table::class);
 
             $container->setDefinition('cineca_translation.table', $definition);
         }
