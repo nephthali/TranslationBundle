@@ -18,11 +18,10 @@
         "doctrine/doctrine-bundle": "~1.4"
     },
     "autoload": {
-        "psr-0": {
-            "Cineca\\TranslationBundle": ""
+        "psr-4": {
+            "Cineca\\TranslationBundle\\": ""
         }
     },
-    "target-dir": "Cineca/TranslationBundle",
     "repositories": [{
         "type": "git",
         "url": "https://git-miur.cineca.it/ndjabont/TranslationBundle.git"
