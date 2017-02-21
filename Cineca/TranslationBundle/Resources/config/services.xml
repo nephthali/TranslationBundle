@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="cineca_translation.table" type="collection">
+        <parameter key="cineca_translation.table.option" type="collection">
             <parameter key="key">key</parameter>
             <parameter key="translation">translation</parameter>
             <parameter key="locale">locale</parameter>
@@ -16,6 +16,10 @@
 
 
     <services>
+        <service id="cineca_translation.table" class="%my_dynamic_service_class%">
+            <!--argument type="expression">service(container.hasparameter('dynamic_service_name')?parameter('dynamic_service_name'):'default_service_name')
+            </argument-->
+        </service>
         <service id="cineca_translation.connection" class="Cineca\TranslationBundle\Services\DBConnection">
             <argument type="service" id="doctrine.dbal.default_connection" />
         </service>
@@ -23,7 +27,7 @@
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="service_container" />
             <argument type="service" id="cineca_translation.connection" />
-            <argument>%cineca_translation.table%</argument>
+            <argument>%cineca_translation.table.option%</argument>
             <call method="registerResources">
                 <argument type="service" id="translator" />
             </call>
