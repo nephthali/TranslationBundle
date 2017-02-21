@@ -23,7 +23,7 @@
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="service_container" />
             <argument type="service" id="cineca_translation.connection" />
-            <argument type="service" id="cineca_translation.table" />
+            <argument>%cineca_translation.table%</argument>
             <call method="registerResources">
                 <argument type="service" id="translator" />
             </call>
