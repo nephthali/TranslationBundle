@@ -19,10 +19,9 @@
     },
     "autoload": {
         "psr-0": {
-            "Cineca\\TranslationBundle": ""
+            "Cineca\\": "./"
         }
     },
-    "target-dir": "Cineca/TranslationBundle",
     "repositories": [{
         "type": "git",
         "url": "https://git-miur.cineca.it/ndjabont/TranslationBundle.git"
