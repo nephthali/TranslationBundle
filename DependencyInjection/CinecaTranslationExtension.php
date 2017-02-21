@@ -61,9 +61,9 @@ class CinecaTranslationExtension extends Extension
         $loader->load('services.xml');
 
         //Set configuration classes of application to the bundle
-        $container->setParameter('cineca_translation.token', $config['translation_classes']['token']);
+        //$container->setParameter('cineca_translation.token', $config['translation_classes']['token']);
         $container->setParameter('cineca_translation.translation', $config['translation_classes']['translation']);
-        $container->setParameter('cineca_translation.language', $config['translation_classes']['language']);
+        //$container->setParameter('cineca_translation.language', $config['translation_classes']['language']);
 
     }
 
