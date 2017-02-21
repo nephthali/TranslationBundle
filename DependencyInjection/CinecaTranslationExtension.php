@@ -10,6 +10,11 @@ use Symfony\Component\Config\Definition\Processor;
 
 /**
  * This is the class that loads and manages your bundle configuration.
+ * 1) To prepend configuration of any bundle before method load is call
+ * -- implement ExtensionInterface or extend Extension and implement PrependExtensionInterface
+ *    to get the method prepend
+ * 2) To execute code during Compilation by writing your own compilePass that implement CompilePassInterface
+ *     where you can ovveride the method process. Method process is call after all extensions are loaded
  *
  * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
  */
@@ -28,8 +33,7 @@ class CinecaTranslationExtension extends Extension
         //Check tranlation classes
         if(empty($config['translation_classes']))
         {
-            echo "Cineca Translation bundle need classes to map translation";
-            die;
+            throw new \RuntimeException('Cineca Translation bundle need classes to map translation.');
         }
 
         /*
@@ -42,8 +46,7 @@ class CinecaTranslationExtension extends Extension
 
         if(isset($config['translation_classes']) && empty($config['translation_classes']['translation']))
         {
-            echo "Cineca Translation bundle need translation class to map translation messages";
-            die;
+            throw new \RuntimeException('Cineca Translation bundle need translation class to map translation messages.');
         }
 
         /*
