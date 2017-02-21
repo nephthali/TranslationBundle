@@ -50,7 +50,7 @@ class DBLoader implements LoaderInterface, ResourceInterface
         //$this->languageRepository    = $entityManager->getRepository("CinecaFareDataBundle:Language");
 
         $this->container             = $container;
-        $this->translationClass = $this->container->get("cineca_translation.translation_classes.translation");
+        $this->translationClass = $this->container->getParameter("cineca_translation.translation_classes.translation");
         //$this->languageClass    = $this->container->get("cineca_translation.language");
         $this->connection = $dbalConnection;
         $this->options = array_replace_recursive($this->options, $options);
