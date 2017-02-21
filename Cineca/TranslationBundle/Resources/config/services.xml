@@ -16,10 +16,10 @@
 
 
     <services>
-        <service id="cineca_translation.table" class="%my_dynamic_service_class%">
+        <!--service id="cineca_translation.table" class="%my_dynamic_service_class%"-->
             <!--argument type="expression">service(container.hasparameter('dynamic_service_name')?parameter('dynamic_service_name'):'default_service_name')
             </argument-->
-        </service>
+        <!--/service-->
         <service id="cineca_translation.connection" class="Cineca\TranslationBundle\Services\DBConnection">
             <argument type="service" id="doctrine.dbal.default_connection" />
         </service>
