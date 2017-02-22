@@ -12,6 +12,8 @@
             <parameter key="domain">domain</parameter>
             <parameter key="updated_at">updated_at</parameter>
         </parameter>
+
+        <parameter key="cineca_translation.table.class">Cineca\TranslationBundle\Model\TranslationTable</parameter>
     </parameters>
 
 
@@ -20,6 +22,7 @@
             <!--argument type="expression">service(container.hasparameter('dynamic_service_name')?parameter('dynamic_service_name'):'default_service_name')
             </argument-->
         <!--/service-->
+        <service id="cineca_translation.table" class="%cineca_translation.table.class%" public="false" abstract="true" />
         <service id="cineca_translation.connection" class="Cineca\TranslationBundle\Services\DBConnection">
             <argument type="service" id="doctrine.dbal.default_connection" />
         </service>
