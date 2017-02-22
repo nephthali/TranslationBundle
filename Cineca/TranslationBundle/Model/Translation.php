@@ -51,16 +51,6 @@ class Translation
      */
     private $updateAt;
 
-        /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
     /**
      * Set key
      *
