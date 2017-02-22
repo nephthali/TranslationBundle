@@ -16,7 +16,7 @@ class DynamicServiceCompilerPass implements CompilerPassInterface
         {
              $translation_table = $container->getParameter('cineca_translation.translation_classes.translation');
 
-            $configuration = $container->setDefinition(sprintf('%cineca_translation.table.class%', $translation_table), new DefinitionDecorator('cineca_translation.table'));
+            $configuration = $container->setDefinition(sprintf('%cineca_translation.table.class', $translation_table), new DefinitionDecorator('cineca_translation.table'));
 
             if($container->hasDefinition('doctrine'))
             {
