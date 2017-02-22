@@ -114,7 +114,7 @@ class DBLoader implements LoaderInterface, ResourceInterface
         if ($this->translationsStatement instanceof \PDOStatement) {
             return $this->translationsStatement;
         }
-        $sql = vsprintf('SELECT `%s` AS `key`, `%s` AS `translation` FROM `%s` WHERE `%s` = :locale AND `%s` = :domain', array(
+        $sql = vsprintf("SELECT %s AS key, %s AS translation FROM %s WHERE %s = :locale AND %s = :domain", array(
             // SELECT ..
             $this->getColumnname('key'),
             $this->getColumnname('translation'),
@@ -155,7 +155,7 @@ class DBLoader implements LoaderInterface, ResourceInterface
         if ($this->resourcesStatement instanceof \PDOStatement) {
             return $this->resourcesStatement;
         }
-        $sql = vsprintf('SELECT DISTINCT `%s` AS `locale`, `%s` AS `domain` FROM `%s`', array(
+        $sql = vsprintf("SELECT DISTINCT %s AS locale, %s AS domain FROM %s", array(
             // SELECT ..
             $this->getColumnname('locale'),
             $this->getColumnname('domain'),
@@ -186,7 +186,7 @@ class DBLoader implements LoaderInterface, ResourceInterface
         if ($this->freshnessStatement instanceof \PDOStatement) {
             return $this->freshnessStatement;
         }
-        $sql = vsprintf('SELECT COUNT(*) FROM `%s` WHERE `%s` > :timestamp', array(
+        $sql = vsprintf("SELECT COUNT(*) FROM %s WHERE %s > :timestamp", array(
             $this->getTablename(),
             $this->getColumnname('updated_at'),
         ));
