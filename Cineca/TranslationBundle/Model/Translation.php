@@ -16,6 +16,15 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Translation
 {
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     */
+    private $id;
+
     /**
      * @var string
      *
@@ -50,6 +59,16 @@ class Translation
      * @ORM\Column(name="update_at", type="datetime", nullable=true)
      */
     private $updateAt;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set key
@@ -145,29 +164,24 @@ class Translation
 
     /**
      * Set updateAt
-     *
-     * @ORM\PrePersist
-     * @ORM\PreUpdate
+     * @param string $updateAt
+     * @return Translations
      */
-    /*
     public function setUpdateAt($updateAt)
     {
-        $this->updateAt = new \DateTime();
+        $this->updateAt = $updateAt;
     }
-    */
+
 
     /**
      * Get updateAt
      *
      * @return \DateTime
      */
-    /*
     public function getUpdateAt()
     {
         return $this->updateAt;
     }
-    */
-
 
 }
 
