@@ -1,0 +1,53 @@
+/*!
+ * Personalizzazioni di Bootstrap per BackOffice di RI
+ *
+ */
+
+#cineca_sousafonebundle_contenttype_sections label{
+    width:auto;
+    padding: 0 60px 0 5px;
+}
+
+#cineca_sousafonebundle_contenttype_sections input{
+   float:left;
+}
+
+.uri-link{
+   margin:-20px 0 10px 168px !important;
+}
+tr.odd {
+  background-color: #f9f9f9;
+}
+tr.highlight td,
+.table-hover tbody tr:hover td,
+.table-hover tbody tr:hover th {
+  background-color: #faf2cc;
+}
+
+.title td.title, .publicationdate td.publicationdate, .lastupdated td.lastupdated{
+   background:#eee;
+}
+
+.highlight td{
+   background:#FAF2CC !important;
+}
+
+
+.btn-group > .btn + .dropdown-toggle {
+    padding: 5px 8px 11px;
+}
+
+#form_pubdate select,
+#cineca_sousafonebundle_contenttype_startdate select,
+#cineca_sousafonebundle_contenttype_enddate select{
+   width:auto;
+   margin-right:5px;
+}
+
+#form_pubdate div{
+   float:left;
+}
+
+#form_pubdate_date, #form_pubdate_time{
+   float:left;
+}
