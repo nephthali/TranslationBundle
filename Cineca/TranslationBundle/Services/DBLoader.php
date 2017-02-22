@@ -10,6 +10,7 @@ use Symfony\Component\Config\Resource\ResourceInterface;
 use Symfony\Component\Translation\MessageCatalogue;
 use Symfony\Component\Translation\TranslatorInterface;
 use Cineca\TranslationBundle\Services\DBConnection;
+use Doctrine\DBAL\Connection;
 
 class DBLoader implements LoaderInterface, ResourceInterface
 {
@@ -44,7 +45,7 @@ class DBLoader implements LoaderInterface, ResourceInterface
     /**
      * @param EntityManager $entityManager
      */
-    public function __construct(EntityManager $entityManager, ContainerInterface $container, DBConnection $dbalConnection, $options)
+    public function __construct(EntityManager $entityManager, ContainerInterface $container, Connection $dbalConnection, $options)
     {
         //$this->translationRepository = $entityManager->getRepository("CinecaFareDataBundle:LanguageTranslation");
         //$this->languageRepository    = $entityManager->getRepository("CinecaFareDataBundle:Language");

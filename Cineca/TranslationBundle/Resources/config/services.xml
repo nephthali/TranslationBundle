@@ -37,7 +37,7 @@
         <service id="cineca_translation.loader" class="Cineca\TranslationBundle\Services\DBLoader">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument type="service" id="service_container" />
-            <argument type="service" id="cineca_translation.connection" />
+            <argument type="service" id="doctrine.dbal.default_connection" />
             <argument>%cineca_translation.table.option%</argument>
             <call method="registerResources">
                 <argument type="service" id="translator" />
