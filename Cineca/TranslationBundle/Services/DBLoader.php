@@ -143,8 +143,16 @@ class DBLoader implements LoaderInterface, ResourceInterface
         if (false === $stmt->execute()) {
             throw new \RuntimeException('Could not fetch translation data from database.');
         }
+
+        /*
+        bindColumn method doesn't exist for OCI8STATEMENT
         $stmt->bindColumn('locale', $locale);
         $stmt->bindColumn('domain', $domain);
+        */
+
+        $stmt->bindParam('locale', $locale, \PDO::PARAM_STR);
+        $stmt->bindParam('domain', $domain, \PDO::PARAM_STR);
+
         while ($stmt->fetch()) {
             $translator->addResource('db', $this, $locale, $domain);
         }
@@ -163,7 +171,16 @@ class DBLoader implements LoaderInterface, ResourceInterface
             $this->getTablename(),
         ));
         $stmt = $this->getConnection()->prepare($sql);
-        $stmt->setFetchMode(\PDO::FETCH_BOUND);
+
+        /*
+        Available fetch Modes for OCI8STATEMENT are
+            PDO::FETCH_BOTH => OCI_BOTH,
+            PDO::FETCH_ASSOC => OCI_ASSOC,
+            PDO::FETCH_NUM => OCI_NUM,
+            PDO::FETCH_COLUMN => OCI_NUM,
+        with default PDO::FETCH_BOTH
+         */
+        $stmt->setFetchMode(\PDO::FETCH_BOTH);
         $this->resourcesStatement = $stmt;
         return $stmt;
     }
