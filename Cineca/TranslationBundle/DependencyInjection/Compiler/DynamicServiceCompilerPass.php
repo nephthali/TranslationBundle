@@ -12,6 +12,7 @@ class DynamicServiceCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
+        /*
         if($container->hasParameter('cineca_translation.translation_classes.translation'))
         {
              $translation_table = $container->getParameter('cineca_translation.translation_classes.translation');
@@ -27,5 +28,6 @@ class DynamicServiceCompilerPass implements CompilerPassInterface
 
             //$container->setDefinition('cineca_translation.table', $definition);
         }
+        */
     }
 }
