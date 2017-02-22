@@ -38,7 +38,7 @@ class DBLoader implements LoaderInterface, ResourceInterface
     );
 
     protected $freshnessStatement;
-    protected $resourceStatement;
+    protected $resourcesStatement;
     protected $translationsStatement;
 
     /**
