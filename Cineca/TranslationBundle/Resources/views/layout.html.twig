@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8" />
-           <link rel="stylesheet" href="{{ asset('bundles/cinecatranslation/css/jquery-autocomplete.min.css') }}" />
-           <script type="text/javascript" src="{{ asset('bundles/cinecatranslation/js/jquery.min.js') }}"></script>
-           <script type="text/javascript" src="{{ asset('bundles/cinecatranslation/js/jquery-autocomplete.min.js') }}"></script>
+      <meta charset="UTF-8" />
+      <link rel="stylesheet" href="{{ asset('bundles/cinecatranslation/css/jquery-autocomplete.min.css') }}" />
+      <script type="text/javascript" src="{{ asset('bundles/cinecatranslation/js/jquery.min.js') }}"></script>
+      <script type="text/javascript" src="{{ asset('bundles/cinecatranslation/js/jquery-autocomplete.min.js') }}"></script>
+      {% block stylesheet %}
+        <link rel="stylesheet" href="{{ asset('bundles/cinecatranslation/css/bootstrap.css') }}" />
+      {% endblock %}
     </head>
     <body>
 
