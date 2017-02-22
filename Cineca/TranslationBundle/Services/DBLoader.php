@@ -8,7 +8,7 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Translation\Loader\LoaderInterface;
 use Symfony\Component\Config\Resource\ResourceInterface;
 use Symfony\Component\Translation\MessageCatalogue;
-use Symfony\Component\Translation\Translator;
+use Symfony\Component\Translation\TranslatorInterface;
 use Cineca\TranslationBundle\Services\DBConnection;
 
 class DBLoader implements LoaderInterface, ResourceInterface
@@ -136,7 +136,7 @@ class DBLoader implements LoaderInterface, ResourceInterface
      *
      * @throws \RuntimeException
      */
-    public function registerResources(Translator $translator)
+    public function registerResources(TranslatorInterface $translator)
     {
         $stmt = $this->getResourcesStatement();
         if (false === $stmt->execute()) {
