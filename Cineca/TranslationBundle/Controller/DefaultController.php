@@ -4,6 +4,7 @@ namespace Cineca\TranslationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Cineca\TranslationBundle\Form\TranslationsType;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
