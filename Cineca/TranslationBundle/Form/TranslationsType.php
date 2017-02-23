@@ -28,7 +28,8 @@ class TranslationsType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Translations'
+            #'data_class' => 'AppBundle\Entity\Translations'
+            'choices' => $this->locales,
         ));
     }
 
@@ -37,8 +38,26 @@ class TranslationsType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_translations';
+        return 'cineca_translation';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    /*
+    public function setDefaultOptions()
+    {
+        return null;
+    }
+    */
 
 
 }
