@@ -4,23 +4,25 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="cineca_translation_homepage" path="/{page}">
+    <route id="cineca_translation_homepage" path="/{page}" methods="GET">
         <default key="_controller">CinecaTranslationBundle:Default:index</default>
         <default key="page">1</default>
         <requirement key="page">\d+</requirement>
     </route>
 
-    <route id="cineca_translation_new" path="/new">
+    <route id="cineca_translations_show" path="/{id}/show" methods="GET">
+        <default key="_controller">CinecaTranslationBundle:Default:show</default>
+    </route>
+
+    <route id="cineca_translations_new" path="/new" methods="GET|POST">
         <default key="_controller">CinecaTranslationBundle:Default:new</default>
     </route>
 
-    <route id="cineca_translation_update" path="/update/{id}">
-        <default key="_controller">CinecaTranslationBundle:Default:new</default>
-        <requirement key="id">\d+</requirement>
+    <route id="cineca_translations_edit" path="/{id}/edit" methods="GET|POST">
+        <default key="_controller">CinecaTranslationBundle:Default:edit</default>
     </route>
 
-    <route id="cineca_translation_delete" path="/delete/{id}">
-        <default key="_controller">CinecaTranslationBundle:Default:new</default>
-        <requirement key="id">\d+</requirement>
+    <route id="cineca_translations_delete" path="/{id}/delete" methods="DELETE">
+        <default key="_controller">CinecaTranslationBundle:Default:delete</default>
     </route>
 </routes>

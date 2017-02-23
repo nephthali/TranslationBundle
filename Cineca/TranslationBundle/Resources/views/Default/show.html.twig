@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Translation</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ translation.id }}</td>
+            </tr>
+            <tr>
+                <th>Key</th>
+                <td>{{ translation.key }}</td>
+            </tr>
+            <tr>
+                <th>Translation</th>
+                <td>{{ translation.translation }}</td>
+            </tr>
+            <tr>
+                <th>Locale</th>
+                <td>{{ translation.locale }}</td>
+            </tr>
+            <tr>
+                <th>Domain</th>
+                <td>{{ translation.domain }}</td>
+            </tr>
+            <tr>
+                <th>Updateat</th>
+                <td>{% if translation.updateAt %}{{ translation.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('translations_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('translations_edit', { 'id': translation.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

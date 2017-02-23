@@ -13,6 +13,49 @@
             <parameter key="updated_at">updated_at</parameter>
         </parameter>
 
+        <parameter key="locale_array" type="collection">
+            <parameter key="ar">arab</parameter>
+            <parameter key="bg">Bulgarian</parameter>
+            <parameter key="ca">Catalan</parameter>
+            <parameter key="cs">Czech</parameter>
+            <parameter key="da">Danish</parameter>
+            <parameter key="de">German</parameter>
+            <parameter key="el">Greek</parameter>
+            <parameter key="en">English</parameter>
+            <parameter key="es">Spanish</parameter>
+            <parameter key="et">Estonian</parameter>
+            <parameter key="eu">Basque</parameter>
+            <parameter key="fa">Persian</parameter>
+            <parameter key="fi">Finnish</parameter>
+            <parameter key="fr">French</parameter>
+            <parameter key="he">Hebrew</parameter>
+            <parameter key="hr">Croatian</parameter>
+            <parameter key="hu">Hungarian</parameter>
+            <parameter key="id">Indonesian</parameter>
+            <parameter key="it">Italian</parameter>
+            <parameter key="ja">Japanese</parameter>
+            <parameter key="lb">Luxembourg</parameter>
+            <parameter key="lt">Lithuanian</parameter>
+            <parameter key="lv">Latvian</parameter>
+            <parameter key="nb">Norwegian Bokmål</parameter>
+            <parameter key="nl">Dutch</parameter>
+            <parameter key="pl">Polish</parameter>
+            <parameter key="pt">Portuguese</parameter>
+            <parameter key="pt_BR">Portuguese (Brazil)</parameter>
+            <parameter key="ro">Romanian</parameter>
+            <parameter key="ru">Russian</parameter>
+            <parameter key="sk">Slovak</parameter>
+            <parameter key="sr">Serbian</parameter>
+            <parameter key="sl">Slovenian</parameter>
+            <parameter key="sr_Latn">Serbian (Latin)</parameter>
+            <parameter key="sv">Swedish</parameter>
+            <parameter key="th">Thai</parameter>
+            <parameter key="tr">Turkish</parameter>
+            <parameter key="uk">Ukrainian</parameter>
+            <parameter key="vi">Vietnamese</parameter>
+            <parameter key="zh_CN">arab</parameter>
+        </parameter>
+
         <parameter key="cineca_translation.table.class">Cineca\TranslationBundle\Model\TranslationTable</parameter>
     </parameters>
 
@@ -49,6 +92,10 @@
             <argument type="service" id="cineca_translation.connection" />
             <!--argument type="service" id="service_container" /-->
             <tag name="translation.dumper" alias="db"/>
+        </service>
+        <service id="cineca_translation.form.type.translation" class="Cineca\TranslationBundle\Form\TranslationType">
+            <argument>%locale_array%</argument>
+            <tag name="form.type" />
         </service>
     </services>
 
