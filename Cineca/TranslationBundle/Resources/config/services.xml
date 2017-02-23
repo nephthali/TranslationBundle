@@ -68,7 +68,7 @@
         <!--service id="cineca_translation.table" class="%cineca_translation.table.class%" public="false" abstract="true" /-->
         <service id="cineca_translation.manager" class="Cineca\TranslationBundle\Services\CinecaTranslationManager">
              <argument type="service" id="doctrine.orm.entity_manager" />
-             <argument type="expression">container.hasParameter('cineca_translation.translation_classes.translation') ? parameter('cineca_translation.translation_classes.translation' : null)
+             <argument type="expression">container.hasParameter('cineca_translation.translation_classes.translation') ? parameter('cineca_translation.translation_classes.translation' : '')
              </argument>
              <call method="setContainer">
                 <argument type="service" id="service_container" />
