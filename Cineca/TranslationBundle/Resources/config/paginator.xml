@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services
+        http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+   <knp_paginator:config>
+    <knp_paginator:page_range>5</knp_paginator:page_range>
+    <knp_paginator:default_options distinct="true">
+        <knp_paginator:page_name>page</knp_paginator:page_name>
+        <knp_paginator:sort_field_name>sort</knp_paginator:sort_field_name>
+        <knp_paginator:sort_direction_name>direction</knp_paginator:sort_direction_name>
+    </knp_paginator:default_options>
+    <knp_paginator:template>
+        <knp_paginator:pagination>KnpPaginatorBundle:Pagination:sliding.html.twig</knp_paginator:pagination>
+        <knp_paginator:sortable>KnpPaginatorBundle:Pagination:sortable_link.html.twig</knp_paginator:sortable>
+    </knp_paginator:template>
+   </knp_paginator:config>
+
+   <!-- ... -->
+</container>

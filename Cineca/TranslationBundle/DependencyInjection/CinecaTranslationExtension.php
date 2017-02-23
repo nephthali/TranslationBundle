@@ -5,6 +5,7 @@ namespace Cineca\TranslationBundle\DependencyInjection;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\Config\Definition\Processor;
 
@@ -18,7 +19,7 @@ use Symfony\Component\Config\Definition\Processor;
  *
  * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
  */
-class CinecaTranslationExtension extends Extension
+class CinecaTranslationExtension extends Extension implements PrependExtensionInterface
 {
     /**
      * {@inheritdoc}
@@ -64,6 +65,19 @@ class CinecaTranslationExtension extends Extension
         //$container->setParameter('cineca_translation.token', $config['translation_classes']['token']);
         $container->setParameter('cineca_translation.translation_classes.translation', $config['translation_classes']['translation']);
         //$container->setParameter('cineca_translation.language', $config['translation_classes']['language']);
+
+    }
+
+    public function prepend(ContainerBuilder $container)
+    {
+        $res = new FileLocator(__DIR__.'/../Resources/config');
+        $loader = new Loader\XmlFileLoader($container, $res);
+        $bundles = $container->getParameter('kernel.bundles');
+
+        //Load  Paginator bundle configuration if KnpPaginatorBundle exist
+        if (isset($bundles['KnpPaginatorBundle'])) {
+            $loader->load('paginator.xml');
+        }
 
     }
 
