@@ -71,7 +71,7 @@ class CinecaTranslationExtension extends Extension implements PrependExtensionIn
     public function prepend(ContainerBuilder $container)
     {
         $res = new FileLocator(__DIR__.'/../Resources/config');
-        $loader = new Loader\YmlFileLoader($container, $res);
+        $loader = new Loader\YamlFileLoader($container, $res);
         $bundles = $container->getParameter('kernel.bundles');
 
         //Load  Paginator bundle configuration if KnpPaginatorBundle exist
