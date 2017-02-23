@@ -21,19 +21,24 @@ class DefaultController extends Controller
         $paginator = null;
 
         //translation class name
-        $entityClassName = $this->getParameter('cineca_translation.translation_classes.translation');
+        $translationEntityManager = $this->get('cineca_translation.manager');
+
+        //$entityClassName = $this->getParameter('cineca_translation.translation_classes.translation');
+        $entityClassName = $translationEntityManager->getEntityClassName();
         if(empty($entityClassName))
         {
             throw new \RuntimeException("This bundle need an entity class name defined under configuration file ");
         }
 
-        $classMetadata = $dm->getClassMetadata($entityClassName);
+        //$classMetadata = $dm->getClassMetadata($entityClassName);
+        $classMetadata = $translationEntityManager->getClassMetadata($entityClassName);
         if(class_exists($classMetadata))
         {
             throw new \RuntimeException("This bundle need an entity class name defined under configuration file ");
         }
         else
-            $repositoryClass = $dm->getRepository($classMetadata->getReflectionClass()->getName());
+            $repositoryClass = $translationEntityManager->getRepositoryClass();
+            //$repositoryClass = $dm->getRepository($classMetadata->getReflectionClass()->getName());
 
         $translationsDefined = $repositoryClass->findAll();
 
