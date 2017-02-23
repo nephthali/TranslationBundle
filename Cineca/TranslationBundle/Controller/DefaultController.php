@@ -76,9 +76,11 @@ class DefaultController extends Controller
      */
     public function newAction(Request $request)
     {
-        $dm = $this->get('doctrine')->getManager();
-        $entityClassName = $this->getParameter('cineca_translation.translation_classes.translation');
-        $classMetadata = $dm->getClassMetadata($entityClassName);
+        $translationEntityManager = $this->get('cineca_translation.manager');
+        $entityClassName = $translationEntityManager->getEntityClassName();
+        $classMetadata = $translationEntityManager->getClassMetadata($entityClassName);
+
+        $translationNewInstance = $classMetadata->newInstance();
 
         $translation = new Translation();
 
@@ -86,7 +88,8 @@ class DefaultController extends Controller
         $locales = $this->container->getParameter('locale_array');
 
         //$form = $this->createForm('AppBundle\Form\TranslationsType', $translation);
-        $form = $this->container->get('form.factory')->create(new TranslationsType($locales),$translation);
+        $form = $this->container->get('form.factory')->create(new TranslationsType($locales),$translationNewInstance);
+        //$form = $this->container->get('form.factory')->create(new TranslationsType($locales),$translation);
 
         $form->handleRequest($request);
 
