@@ -129,7 +129,7 @@ class DefaultController extends Controller
         }
 
         return $this->render('CinecaTranslationBundle:Default:new.html.twig', array(
-            'translation' => $translation,
+            'translation' => $translationNewInstance,
             'form' => $form->createView(),
         ));
     }
