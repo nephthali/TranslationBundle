@@ -136,7 +136,7 @@ class DefaultController extends Controller
      * Finds and displays a translation entity.
      *
      */
-    public function showAction(Translations $translation)
+    public function showAction(Request $request)
     {
         $id = $this->getRequest()->get('id');
         $translationEntityManager = $this->get('cineca_translation.manager');
