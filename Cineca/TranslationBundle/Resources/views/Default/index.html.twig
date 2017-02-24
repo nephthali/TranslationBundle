@@ -12,7 +12,7 @@
         {# total translation count #}
         {% if pagination is defined and pagination is not null%}
         <div class="count">
-            {{ 'Total translation items'|trans|upper pagination.getTotalItemCount }}
+            {{'Total translation items '|trans|upper }}:{{ pagination.getTotalItemCount }}
         </div>
         <table class="table table-bordered table-striped">
             <thead>
