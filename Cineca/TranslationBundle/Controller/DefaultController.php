@@ -107,10 +107,12 @@ class DefaultController extends Controller
             $translationNewInstance
             //$translationModel
             ,
+            // Set of Symfony/Component/OptionsResolver/OptionsResolver options
             array(
                 'action' => $this->generateUrl('cineca_translations_new'),
                 'data_class' => get_class($translationNewInstance),
-                'entity_field_names' => $translationEntityManager->getEntityFieldNames()
+                // UndefinedOptionsException for OptionsResolver
+                //'entity_field_names' => $translationEntityManager->getEntityFieldNames()
             )
         );
 
