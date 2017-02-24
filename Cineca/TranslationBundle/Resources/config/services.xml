@@ -53,7 +53,7 @@
             <parameter key="tr">Turkish</parameter>
             <parameter key="uk">Ukrainian</parameter>
             <parameter key="vi">Vietnamese</parameter>
-            <parameter key="zh_CN">arab</parameter>
+            <parameter key="zh_CN">Chinese (China)</parameter>
         </parameter>
 
         <parameter key="cineca_translation.table.class">Cineca\TranslationBundle\Model\TranslationTable</parameter>
