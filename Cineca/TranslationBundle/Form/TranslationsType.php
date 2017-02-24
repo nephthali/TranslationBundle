@@ -22,12 +22,15 @@ class TranslationsType extends AbstractType
     {
         $this->data_class = isset($options['data_class']) ? $options['data_class'] : null;
         $builder
-            ->add('key','text',array('label'=>'text to translate'))
+            ->add('key','text',array('label'=>'Text to translate'))
             ->add('translation')
             //This is for Symfony up to 2.8
             #->add('locale',get_class(new ChoiceType()),array())
             //This is before Symfony 2.8
-            ->add('locale','choice',array('choices' => $this->locales))
+            ->add('locale','choice',array(
+                'label' => 'language of translation',
+                'choices' => $this->locales)
+            )
             #->add('domain')
             #->add('updateAt','date')
         ;
