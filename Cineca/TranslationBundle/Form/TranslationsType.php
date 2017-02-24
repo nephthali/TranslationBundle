@@ -19,7 +19,17 @@ class TranslationsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('key')->add('translation')->add('locale')->add('domain')->add('updateAt')        ;
+        $this->data_class = isset($options['data_class']) ? $options['data_class'] : null;
+        $builder
+            #->add('key')
+            ->add('translation')
+            //This is for Symfony up to 2.8
+            #->add('locale',get_class(new ChoiceType()),array())
+            //This is before Symfony 2.8
+            ->add('locale','choice',array('choices' => $this->locales))
+            #->add('domain')
+            #->add('updateAt','date')
+        ;
     }
 
     /**
@@ -29,6 +39,7 @@ class TranslationsType extends AbstractType
     {
         $resolver->setDefaults(array(
             #'data_class' => 'AppBundle\Entity\Translations'
+            'data_class' => $this->data_class != null ? $this->data_class : null,
             'choices' => $this->locales,
         ));
     }

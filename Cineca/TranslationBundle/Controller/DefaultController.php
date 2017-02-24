@@ -87,8 +87,28 @@ class DefaultController extends Controller
         //locales defined in config;
         $locales = $this->container->getParameter('locale_array');
 
+        //locales defined in config;
+        $locales = $this->container->getParameter('locale_array');
+
+        // For Symfony 2.8 to up Create FormBuilder changed
+        // it Need a Fully Qualified name of class like this
+        /*
+        $form = $this->container->get('form.factory')->create( '\Cineca\TranslationBundle\Form\TranslationsType',
+            $translationNewInstance
+            //$translation
+            ,array('data_class' => get_class($translationNewInstance),
+                   'container' => $this->container,
+                   'locales' => $locales)
+        );
+        */
+
         //$form = $this->createForm('AppBundle\Form\TranslationsType', $translation);
-        $form = $this->container->get('form.factory')->create(new TranslationsType($locales),$translationNewInstance);
+        $form = $this->container->get('form.factory')->create(new TranslationsType($locales),
+            $translationNewInstance
+            //$translation
+            ,array('data_class' => get_class($translationNewInstance))
+        );
+
         //$form = $this->container->get('form.factory')->create(new TranslationsType($locales),$translation);
 
         $form->handleRequest($request);
