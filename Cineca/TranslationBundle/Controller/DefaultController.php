@@ -116,8 +116,6 @@ class DefaultController extends Controller
             )
         );
 
-        //$form = $this->container->get('form.factory')->create(new TranslationsType($locales),$translation);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -140,11 +138,17 @@ class DefaultController extends Controller
      */
     public function showAction(Translations $translation)
     {
-        $deleteForm = $this->createDeleteForm($translation);
+        $id = $this->getRequest()->get('id');
+        $translationEntityManager = $this->get('cineca_translation.manager');
+        $entityRepository = $translationEntityManager->getRepositoryClass();
+        $translation = $entityRepository->find($id);
+
+        //$deleteForm = $this->createDeleteForm($translation);
 
         return $this->render('CinecaTranslationBundle:Default:show.html.twig', array(
             'translation' => $translation,
-            'delete_form' => $deleteForm->createView(),
+            'translationId' => $id,
+            //'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -152,26 +156,42 @@ class DefaultController extends Controller
      * Displays a form to edit an existing translation entity.
      *
      */
-    public function editAction(Request $request, Translations $translation)
+    public function editAction(Request $request)
     {
-        $deleteForm = $this->createDeleteForm($translation);
+        //$deleteForm = $this->createDeleteForm($translation);
+        $id = $this->getRequest()->get('id');
+        $translationEntityManager = $this->get('cineca_translation.manager');
+        $entityRepository = $translationEntityManager->getRepositoryClass();
+        $translation = $entityRepository->find($id);
 
-        $form = $this->container->get('form.factory')->create(new LoginType($idp, $data['last_username'], $sitename));
+        //$form = $this->createForm('AppBundle\Form\TranslationsType', $translation);
+        $editForm = $this->container->get('form.factory')->create(new TranslationsType($locales),
+            $translation
+            //$translationModel
+            ,
+            // Set of Symfony/Component/OptionsResolver/OptionsResolver options
+            array(
+                'action' => $this->generateUrl('cineca_translations_new'),
+                'data_class' => get_class($translation),
+                // UndefinedOptionsException for OptionsResolver
+                //'entity_field_names' => $translationEntityManager->getEntityFieldNames()
+            )
+        );
 
 
-        $editForm = $this->createForm('AppBundle\Form\TranslationsType', $translation);
+        //$editForm = $this->createForm('AppBundle\Form\TranslationsType', $translation);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('translations_edit', array('id' => $translation->getId()));
+            return $this->redirectToRoute('cineca_translations_edit', array('id' => $translation->getId()));
         }
 
-        return $this->render('translations/edit.html.twig', array(
+        return $this->render('CinecaTranslationBundle:Default:edit.html.twig', array(
             'translation' => $translation,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            //'delete_form' => $deleteForm->createView(),
         ));
     }
 
