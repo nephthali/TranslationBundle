@@ -31,7 +31,11 @@ class TranslationsType extends AbstractType
                 'label' => 'language of translation',
                 'choices' => $this->locales)
             )
-            #->add('domain')
+            ->add('domain','text',array(
+                'label' => 'Translation Domain',
+                'data' => 'message',
+                'disabled' => true)
+            )
             #->add('updateAt','date')
         ;
     }
