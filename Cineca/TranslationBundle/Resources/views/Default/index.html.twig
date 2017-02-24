@@ -5,7 +5,7 @@
 <div class="row">
   <div class="col-lg-12">
     <div>
-        <a href="{{path('cineca_translations_new')}}">{{'create new translation'|trans({}.'CinecaTranslationBundle')}}</a>
+        <a class="btn btn-default" href="{{path('cineca_translations_new')}}">{{'create new translation'|trans({}.'CinecaTranslationBundle')}}</a>
     </div>
     <div class="panel panel-info">
        <div class="panel-heading">
@@ -15,7 +15,7 @@
         {# total translation count #}
         {% if pagination is defined and pagination is not null%}
         <div class="count">
-            {{'Total translation items '|trans({}.'CinecaTranslationBundle'|upper }}:{{ pagination.getTotalItemCount }}
+            {{'Total translation items '|trans({}.'CinecaTranslationBundle')|upper }}:{{ pagination.getTotalItemCount }}
         </div>
         <table class="table table-bordered table-striped">
             <thead>
