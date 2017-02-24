@@ -9,49 +9,49 @@
         Translation created
        </div>
        <div class="panel-body">
+        <table class="table table-bordered table-striped">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ translation.id }}</td>
+                </tr>
+                <tr>
+                    <th>Key</th>
+                    <td>{{ translation.key }}</td>
+                </tr>
+                <tr>
+                    <th>Translation</th>
+                    <td>{{ translation.translation }}</td>
+                </tr>
+                <tr>
+                    <th>Locale</th>
+                    <td>{{ translation.locale }}</td>
+                </tr>
+                <tr>
+                    <th>Domain</th>
+                    <td>{{ translation.domain is defined and translation.domain is not null ? translation.domain }}</td>
+                </tr>
+                <tr>
+                    <th>Updateat</th>
+                    <td>{% if translation.updateAt %}{{ translation.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div>
+            <a href="{{ path('cineca_translation_homepage') }}">Back to the list</a>
+            <a href="{{ path('cineca_translations_edit', { 'id': translation.id }) }}">Edit</a>
+            {#%
+            <li>
+                {{ form_start(delete_form) }}
+                    <input type="submit" value="Delete">
+                {{ form_end(delete_form) }}
+            </li>
+            %#}
+        </div>
+           </div>
        </div>
-   </div>
 </div>
 
-    <table class="table table-bordered table-striped">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ translation.id }}</td>
-            </tr>
-            <tr>
-                <th>Key</th>
-                <td>{{ translation.key }}</td>
-            </tr>
-            <tr>
-                <th>Translation</th>
-                <td>{{ translation.translation }}</td>
-            </tr>
-            <tr>
-                <th>Locale</th>
-                <td>{{ translation.locale }}</td>
-            </tr>
-            <tr>
-                <th>Domain</th>
-                <td>{{ translation.domain is defined and translation.domain is not null ? translation.domain }}</td>
-            </tr>
-            <tr>
-                <th>Updateat</th>
-                <td>{% if translation.updateAt %}{{ translation.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div>
-        <a href="{{ path('cineca_translation_homepage') }}">Back to the list</a>
-        <a href="{{ path('cineca_translations_edit', { 'id': translation.id }) }}">Edit</a>
-        {#%
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-        %#}
-    </div>
 {% endblock %}
 
