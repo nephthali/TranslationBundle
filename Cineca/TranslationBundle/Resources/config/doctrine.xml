@@ -5,7 +5,7 @@
     <!-- Need to set NLS PARATERS ON ORACLE-->
     <services>
         <service id="cineca_translation.doctrine.oracle_session_init" class="Doctrine\DBAL\Event\Listeners\OracleSessionInit" public="false">
-            <tag name="twig.extension" event="postConnect"/>
+            <tag name="doctrine.event_listener" event="postConnect"/>
         </service>
     </services>
 
