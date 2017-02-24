@@ -82,20 +82,20 @@ class DefaultController extends Controller
 
         $translationNewInstance = $classMetadata->newInstance();
 
-        $translation = new Translation();
+        $translationModel = new Translation();
 
         //locales defined in config;
         $locales = $this->container->getParameter('locale_array');
 
-        //locales defined in config;
-        $locales = $this->container->getParameter('locale_array');
+        //Entity Table mapping
+        $entityTableMapping = $translationEntityManager->getEntityTableMapping();
 
         // For Symfony 2.8 to up Create FormBuilder changed
         // it Need a Fully Qualified name of class like this
         /*
         $form = $this->container->get('form.factory')->create( '\Cineca\TranslationBundle\Form\TranslationsType',
             $translationNewInstance
-            //$translation
+            //$translationModel
             ,array('data_class' => get_class($translationNewInstance),
                    'container' => $this->container,
                    'locales' => $locales)
@@ -105,11 +105,12 @@ class DefaultController extends Controller
         //$form = $this->createForm('AppBundle\Form\TranslationsType', $translation);
         $form = $this->container->get('form.factory')->create(new TranslationsType($locales),
             $translationNewInstance
-            //$translation
+            //$translationModel
             ,
             array(
                 'action' => $this->generateUrl('cineca_translations_new'),
-                'data_class' => get_class($translationNewInstance)
+                'data_class' => get_class($translationNewInstance),
+                'entity_field_names' => $translationEntityManager->getEntityFieldNames()
             )
         );
 

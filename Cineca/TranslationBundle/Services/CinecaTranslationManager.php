@@ -61,4 +61,14 @@ class CinecaTranslationManager
             return null;
     }
 
+    public function getEntityFieldNames()
+    {
+        return $this->getClassMetadata->getFieldNames();
+    }
+
+    public function getEntityTableMapping()
+    {
+        return $this->getClassMetadata->getTableName();
+    }
+
 }
