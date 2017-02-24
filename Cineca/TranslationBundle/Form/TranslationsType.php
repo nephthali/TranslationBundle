@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class TranslationsType extends AbstractType
 {
     private $locales;
+    private $data_class;
 
     public function __construct(array $locales)
     {
@@ -21,7 +22,7 @@ class TranslationsType extends AbstractType
     {
         $this->data_class = isset($options['data_class']) ? $options['data_class'] : null;
         $builder
-            #->add('key')
+            ->add('key','text',array('label'=>'text to translate'))
             ->add('translation')
             //This is for Symfony up to 2.8
             #->add('locale',get_class(new ChoiceType()),array())
