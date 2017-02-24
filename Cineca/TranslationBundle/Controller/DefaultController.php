@@ -122,10 +122,10 @@ class DefaultController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($translation);
-            $em->flush($translation);
+            $em->persist($translationNewInstance);
+            $em->flush($translationNewInstance);
 
-            return $this->redirectToRoute('cineca_translations_show', array('id' => $translation->getId()));
+            return $this->redirectToRoute('cineca_translations_show', array('id' => $translationNewInstance->getId()));
         }
 
         return $this->render('CinecaTranslationBundle:Default:new.html.twig', array(
