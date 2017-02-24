@@ -12,24 +12,28 @@
         {# total translation count #}
         {% if pagination is defined and pagination is not null%}
         <div class="count">
-            {{ pagination.getTotalItemCount }}
+            {{ 'Total translation items'|trans|upper pagination.getTotalItemCount }}
         </div>
-        <table>
-        <tr>
-        {# sorting of properties based on query components #}
-            <th>{{ knp_pagination_sortable(pagination, 'Id', 't.id') }}</th>
-            <th{% if pagination.isSorted('t.key') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Key', 't.key') }}</th>
-            <th>{{ knp_pagination_sortable(pagination, 'Release', ['t.date']) }}</th>
-        </tr>
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+            {# sorting of properties based on query components #}
+                <th>{{ knp_pagination_sortable(pagination, 'Id', 't.id') }}</th>
+                <th{% if pagination.isSorted('t.key') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Key', 't.key') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Release', ['t.date']) }}</th>
+            </tr>
+            </thead>
 
-        {# table body #}
-        {% for translation in pagination %}
-        <tr {% if loop.index is odd %}class="color"{% endif %}>
-            <td>{{ translation.id }}</td>
-            <td>{{ translation.key }}</td>
-            <td>{{ translation.updateAt | date('Y-m-d H:i:s') }} }}</td>
-        </tr>
-        {% endfor %}
+            {# table body #}
+            <tbody>
+            {% for translation in pagination %}
+            <tr {% if loop.index is odd %}class="color"{% endif %}>
+                <td>{{ translation.id }}</td>
+                <td>{{ translation.key }}</td>
+                <td>{{ translation.updateAt | date('Y-m-d H:i:s') }} }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
         </table>
         {# display navigation #}
         <div class="navigation">

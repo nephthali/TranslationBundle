@@ -106,7 +106,11 @@ class DefaultController extends Controller
         $form = $this->container->get('form.factory')->create(new TranslationsType($locales),
             $translationNewInstance
             //$translation
-            ,array('data_class' => get_class($translationNewInstance))
+            ,
+            array(
+                'action' => $this->generateUrl('cineca_translations_new'),
+                'data_class' => get_class($translationNewInstance)
+            )
         );
 
         //$form = $this->container->get('form.factory')->create(new TranslationsType($locales),$translation);
