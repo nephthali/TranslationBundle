@@ -140,6 +140,7 @@ class DefaultController extends Controller
     {
         $id = $this->getRequest()->get('id');
         $translationEntityManager = $this->get('cineca_translation.manager');
+        $translationEntityManager = $this->get('cineca_translation.manager');
         $entityRepository = $translationEntityManager->getRepositoryClass();
         $translation = $entityRepository->find($id);
 
@@ -171,7 +172,7 @@ class DefaultController extends Controller
             ,
             // Set of Symfony/Component/OptionsResolver/OptionsResolver options
             array(
-                'action' => $this->generateUrl('cineca_translations_new'),
+                'action' => $this->generateUrl('cineca_translations_edit',array('id' => $id)),
                 'data_class' => get_class($translation),
                 // UndefinedOptionsException for OptionsResolver
                 //'entity_field_names' => $translationEntityManager->getEntityFieldNames()
@@ -185,7 +186,7 @@ class DefaultController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('cineca_translations_edit', array('id' => $translation->getId()));
+            return $this->redirectToRoute('cineca_translations_show', array('id' => $translation->getId()));
         }
 
         return $this->render('CinecaTranslationBundle:Default:edit.html.twig', array(

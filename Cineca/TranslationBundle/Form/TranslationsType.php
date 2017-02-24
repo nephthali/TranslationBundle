@@ -33,8 +33,9 @@ class TranslationsType extends AbstractType
             )
             ->add('domain','text',array(
                 'label' => 'Translation Domain',
-                'data' => 'message',
-                'disabled' => true)
+                'data' => 'messages',
+                'disabled' => true,
+                'placeholder' => 'messages' )
             )
             #->add('updateAt','date')
         ;
