@@ -1,33 +1,46 @@
 {% extends "CinecaTranslationBundle::layout.html.twig" %}
 
 {% block content %}
-    {# total translation count #}
-    {% if pagination is defined and pagination is not null%}
-    <div class="count">
-        {{ pagination.getTotalItemCount }}
-    </div>
-    <table>
-    <tr>
-    {# sorting of properties based on query components #}
-        <th>{{ knp_pagination_sortable(pagination, 'Id', 't.id') }}</th>
-        <th{% if pagination.isSorted('t.key') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Key', 't.key') }}</th>
-        <th>{{ knp_pagination_sortable(pagination, 'Release', ['t.date']) }}</th>
-    </tr>
 
-    {# table body #}
-    {% for translation in pagination %}
-    <tr {% if loop.index is odd %}class="color"{% endif %}>
-        <td>{{ translation.id }}</td>
-        <td>{{ translation.key }}</td>
-        <td>{{ translation.updateAt | date('Y-m-d H:i:s') }} }}</td>
-    </tr>
-    {% endfor %}
-    </table>
-    {# display navigation #}
-    <div class="navigation">
-        {{ knp_pagination_render(pagination) }}
-    </div>
-    {% endif %}
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-info">
+       <div class="panel-heading">
+        Translation List
+       </div>
+       <div class="panel-body">
+        {# total translation count #}
+        {% if pagination is defined and pagination is not null%}
+        <div class="count">
+            {{ pagination.getTotalItemCount }}
+        </div>
+        <table>
+        <tr>
+        {# sorting of properties based on query components #}
+            <th>{{ knp_pagination_sortable(pagination, 'Id', 't.id') }}</th>
+            <th{% if pagination.isSorted('t.key') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Key', 't.key') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Release', ['t.date']) }}</th>
+        </tr>
+
+        {# table body #}
+        {% for translation in pagination %}
+        <tr {% if loop.index is odd %}class="color"{% endif %}>
+            <td>{{ translation.id }}</td>
+            <td>{{ translation.key }}</td>
+            <td>{{ translation.updateAt | date('Y-m-d H:i:s') }} }}</td>
+        </tr>
+        {% endfor %}
+        </table>
+        {# display navigation #}
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+        {% endif %}
+       </div>
+   </div>
+  </div>
+</div>
+
 {% endblock %}
 
 
