@@ -63,12 +63,12 @@ class CinecaTranslationManager
 
     public function getEntityFieldNames()
     {
-        return $this->getClassMetadata->getFieldNames();
+        return $this->getClassMetadata()->getFieldNames();
     }
 
     public function getEntityTableMapping()
     {
-        return $this->getClassMetadata->getTableName();
+        return $this->getClassMetadata()->getTableName();
     }
 
 }
