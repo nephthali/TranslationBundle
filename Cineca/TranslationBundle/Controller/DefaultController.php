@@ -161,6 +161,7 @@ class DefaultController extends Controller
     {
         //$deleteForm = $this->createDeleteForm($translation);
         $id = $this->getRequest()->get('id');
+        $locales = $this->container->getParameter('locale_array');
         $translationEntityManager = $this->get('cineca_translation.manager');
         $entityRepository = $translationEntityManager->getRepositoryClass();
         $translation = $entityRepository->find($id);
