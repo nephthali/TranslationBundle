@@ -127,7 +127,7 @@ class DBLoader implements LoaderInterface, ResourceInterface
             $this->getColumnname('domain'),
         ));
         $stmt = $this->getConnection()->prepare($sql);
-        $stmt->setFetchMode(\PDO::FETCH_BOUND);
+        $stmt->setFetchMode(\PDO::FETCH_BOTH);
         $this->translationsStatement = $stmt;
         return $stmt;
     }
