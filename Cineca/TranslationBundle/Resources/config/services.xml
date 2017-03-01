@@ -97,6 +97,11 @@
             <argument>%locale_array%</argument>
             <tag name="form.type" />
         </service>
+        <service id="cineca_translation.request.event.listener" class="Cineca\TranslationBundle\EventListener\requestListener">
+            <argument type="service" id="request_stack" />
+            <argument type="service" id="kernel" />
+            <tag name="kernel.event_listener" event="kernel.request"/>
+        </service>
     </services>
 
 </container>
