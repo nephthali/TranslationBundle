@@ -96,12 +96,14 @@ class DBLoader implements LoaderInterface, ResourceInterface
             throw new \RuntimeException('Could not fetch translation data from database.');
         }
 
-        $stmt->bindColumn('key', $key);
-        $stmt->bindColumn('translation', $trans);
+        //$stmt->bindColumn('key', $key);
+        //$stmt->bindColumn('translation', $trans);
 
         $catalogue = new MessageCatalogue($locale);
 
-        while ($stmt->fetch()) {
+        while ($row = $stmt->fetch()) {
+            $key = $row['KEY'];
+            $trans = $row['TRANSLATION'];
             $catalogue->set($key, $trans, $domain);
         }
 
@@ -154,6 +156,8 @@ class DBLoader implements LoaderInterface, ResourceInterface
         //$stmt->bindParam('domain', $domain, \PDO::PARAM_STR);
 
         while ($stmt->fetch()) {
+            $locale = $row['LOCALE'];
+            $domain = $row['LOCALE'] != null ? $row['LOCALE'] : 'messages';
             $translator->addResource('db', $this, $locale, $domain);
         }
     }

@@ -42,14 +42,14 @@ class Translation
     /**
      * @var string
      *
-     * @ORM\Column(name="locale", type="string", length=5, nullable=true)
+     * @ORM\Column(name="locale", type="string", length=5)
      */
     private $locale;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="domain", type="string", length=255, nullable=true)
+     * @ORM\Column(name="domain", type="string", length=255)
      */
     private $domain;
 
