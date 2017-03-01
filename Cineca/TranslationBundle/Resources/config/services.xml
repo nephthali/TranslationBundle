@@ -83,7 +83,7 @@
             <argument type="service" id="doctrine.dbal.default_connection" />
             <argument>%cineca_translation.table.option%</argument>
             <call method="registerResources">
-                <argument type="service" id="translator" />
+                <argument type="service" id="translator.default" />
             </call>
             <tag name="translation.loader" alias="db"/>
         </service>

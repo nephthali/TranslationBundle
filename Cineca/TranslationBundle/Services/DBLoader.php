@@ -160,7 +160,7 @@ class DBLoader implements LoaderInterface, ResourceInterface
         while ($row = $stmt->fetch()) {
             $locale = $row['LOCALE'];
             $domain = $row['DOMAIN'] != null ? $row['DOMAIN'] : 'messages';
-            $translator->addResource('db', $this, $locale, $domain);
+            $this->translator->addResource('db', $this, $locale, $domain);
         }
     }
 
