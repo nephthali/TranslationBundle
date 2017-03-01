@@ -6,7 +6,7 @@
   <div class="col-lg-12">
     <div class="col-lg-12">
     <div class="pull-right">
-        <a class="btn btn-info" href="{{path('cineca_translations_new')}}">{{'create new translation'|trans({},'CinecaTranslationBundle')}}
+        <a class="btn btn-primary" href="{{path('cineca_translations_new')}}">{{'create new translation'|trans({},'CinecaTranslationBundle')}}
         </a>
     </div>
     <div>
@@ -44,7 +44,7 @@
                 <td>{{ translation.updateAt | date('Y-m-d H:i:s') }}</td>
                 <td>
                     <div class="btn-group">
-                        <a class="btn btn-default btn-sm" href="{{ path('cineca_translations_edit', { 'id': translation.id } ) }}">{{ 'Edit translation'|trans({}, 'translation') }}</a>
+                        <a class="btn btn-primary btn-sm" href="{{ path('cineca_translations_edit', { 'id': translation.id } ) }}">{{ 'Edit translation'|trans({}, 'translation') }}</a>
                     </div>
                 </td>
             </tr>
