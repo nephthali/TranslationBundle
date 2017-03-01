@@ -155,7 +155,7 @@ class DBLoader implements LoaderInterface, ResourceInterface
         //$stmt->bindParam('locale', $locale, \PDO::PARAM_STR);
         //$stmt->bindParam('domain', $domain, \PDO::PARAM_STR);
 
-        while ($stmt->fetch()) {
+        while ($row = $stmt->fetch()) {
             $locale = $row['LOCALE'];
             $domain = $row['LOCALE'] != null ? $row['LOCALE'] : 'messages';
             $translator->addResource('db', $this, $locale, $domain);

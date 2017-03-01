@@ -31,6 +31,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'Id', 't.id') }}</th>
                 <th{% if pagination.isSorted('t.key') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Key', 't.key') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Release', ['t.date']) }}</th>
+                <th>{{'Action'}}</th>
             </tr>
             </thead>
 
@@ -41,6 +42,11 @@
                 <td>{{ translation.id }}</td>
                 <td>{{ translation.key }}</td>
                 <td>{{ translation.updateAt | date('Y-m-d H:i:s') }} }}</td>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-default btn-sm" href="{{ path('cineca_translations_edit', { 'id': translation.id } ) }}">{{ 'Edit translation'|trans({}, 'translation') }}</a>
+                    </div>
+                </td>
             </tr>
             {% endfor %}
             </tbody>
