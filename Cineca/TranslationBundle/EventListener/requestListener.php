@@ -1,6 +1,6 @@
 <?php
 
-namespace Cineca\Fare\PublicBundle\EventListener;
+namespace Cineca\TranslationBundle\EventListener;
 
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\RequestStack;
