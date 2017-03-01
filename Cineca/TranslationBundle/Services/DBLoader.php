@@ -14,8 +14,7 @@ use Doctrine\DBAL\Connection;
 
 class DBLoader implements LoaderInterface, ResourceInterface
 {
-    //private $translationRepository;
-    //private $languageRepository;
+    private $translator;
     private $translationClass;
     private $languageClass;
     private $container;
@@ -141,6 +140,9 @@ class DBLoader implements LoaderInterface, ResourceInterface
      */
     public function registerResources(TranslatorInterface $translator)
     {
+        //registered the translator
+        $this->translator = $translator;
+
         $stmt = $this->getResourcesStatement();
         if (false === $stmt->execute()) {
             throw new \RuntimeException('Could not fetch translation data from database.');
