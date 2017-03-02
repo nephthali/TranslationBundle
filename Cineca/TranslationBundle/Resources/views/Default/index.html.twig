@@ -41,7 +41,7 @@
             <tr {% if loop.index is odd %}class="color"{% endif %}>
                 <td>{{ translation.id }}</td>
                 <td>{{ translation.key }}</td>
-                <td>{{ translation.updateAt | date('Y-m-d H:i:s') }}</td>
+                <td>{{ translation.updateAt is defined ? translation.updateAt|date('Y-m-d H:i:s') : 'your table need field update_at to map release date' }}</td>
                 <td>
                     <div class="btn-group">
                         <a class="btn btn-primary btn-sm" href="{{ path('cineca_translations_edit', { 'id': translation.id } ) }}">{{ 'Edit translation'|trans({}, 'translation') }}
