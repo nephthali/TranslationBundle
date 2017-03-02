@@ -72,7 +72,7 @@ Alternativamente per Gestire le traduzioni
             translation: "path della entity" ##AppBundle\Entity\Translation
 </pre>
 
-* <b>Aggiungere la route per accedere all'interfaccia di gestione delle traduzioni </b>
+* <b>Aggiungere la route per accedere all'interfaccia di gestione delle traduzioni. Preferibilmente sotto firewall </b>
 <pre>
     # ... routing.yml
     cineca_translation:
