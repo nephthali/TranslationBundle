@@ -66,6 +66,7 @@ Alternativamente per Gestire le traduzioni
 
 * <b>Aggiungere nel file di configuration dell'applicazione</b>
 <pre>
+    # ...config.yml
     cineca_translation:
         translation_classes:
             translation: "path della entity" ##AppBundle\Entity\Translation
@@ -73,12 +74,12 @@ Alternativamente per Gestire le traduzioni
 
 * <b>Aggiungere la route per accedere all'interfaccia di gestione delle traduzioni </b>
 <pre>
-///file di routing.yml
-cineca_translation:
-    resource: "@CinecaTranslationBundle/Resources/config/routing.xml"
-    prefix: /your_prefix
-    options:
-        i18n: true
+    # ... routing.yml
+    cineca_translation:
+        resource: "@CinecaTranslationBundle/Resources/config/routing.xml"
+        prefix: /your_prefix
+        options:
+            i18n: true
 </pre>
 
 
