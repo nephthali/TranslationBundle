@@ -8,7 +8,7 @@ Le Features implementate sono:
 *    Estrazione delle traduzioni dal database.
 *    Interfaccia Web-based per Gestire le traduzioni.
 
-##Documentation##
+## Documentation ##
 
 ### <u>Prerequisiti</u> ###
 Questo Bundle Necessita le seguente librerie php per funzinare correttamente
