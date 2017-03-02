@@ -51,6 +51,10 @@ Alternativamente per Gestire le traduzioni
 
 ### <u>Configurazione</u> ###
 
+* <b>Importante creare il file col formato <code>domain.locale.extension</code> nella cartella <code>app/Resources/translations</code> dell'applicazione.</b>
+* <b>Il bundle usa l'estenzione "db" per caricare le traduzioni definiti nell'applicazione. <code>Esempio di file messages.it.db</code></b>
+
+
 <b>Il bundle richiede una entity che mappa la tabella delle traduzioni</b>
 
 * <b>Abilitare la componente translator </b>
