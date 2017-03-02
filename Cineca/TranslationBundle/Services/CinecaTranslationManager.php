@@ -29,7 +29,7 @@ class CinecaTranslationManager
 
     public function setContainer(ContainerInterface $container) {
         //Check Translation Table columns defined
-        $this->auditTranslationTable();
+        $this->inspectTranslationTable();
 
         $this->container = $container;
         return $this;
@@ -80,7 +80,7 @@ class CinecaTranslationManager
         return $this->getClassMetadata()->getTableName();
     }
 
-    private function auditTranslationTable()
+    private function inspectTranslationTable()
     {
         $translationReflection = $this->getClassMetadata();
         $translationTableColums = $translationReflection->getColumnNames();
