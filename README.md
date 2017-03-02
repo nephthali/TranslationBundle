@@ -55,13 +55,13 @@ Alternativamente per Gestire le traduzioni
 
 * <b>Abilitare la componente translator </b>
 <pre>
-framework:
-    # ...
-    translator: { fallbacks: ['%locale%'] }
-
-parameters:
-    # ...
-    locale:     en
+    framework:
+        # ...
+        translator: { fallbacks: ['%locale%'] }
+    #...
+    parameters:
+        # ...
+        locale:     en
 </pre>
 
 * <b>Aggiungere nel file di configuration dell'applicazione</b>
