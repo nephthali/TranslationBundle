@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class TranslationsType extends AbstractType
 {
@@ -26,7 +27,14 @@ class TranslationsType extends AbstractType
         $builder
             ->add('key',null,array(
                 'label'=>'Text to translate',
-                'constraints' => array(new NotBlank(array('message' => 'Text to translate is required')))
+                'constraints' => array(
+                    new NotBlank(array('message' => 'Text to translate is required')),
+                    new Regex(array(
+                        'pattern' => "/[\\/\\\\\|\?&\"$]/",
+                        'match' => false,
+                        'message' => "Invalid character inserted"
+                        ))
+                )
             ))
             ->add('translation',null,array(
                 'constraints' => array(new NotBlank(arraY('message' => 'Translation Text is required')))
@@ -36,13 +44,27 @@ class TranslationsType extends AbstractType
             //This is before Symfony 2.8
             ->add('locale','choice',array(
                 'label' => 'language of translation',
-                'choices' => $this->locales
+                'choices' => $this->locales,
+                'constraints' => array(
+                    new NotBlank(array('message' => 'Locale language is required')),
+                    new Regex(array(
+                        'pattern' => "/[\\/\\\\\|\?&\"$]/",
+                        'match' => false,
+                        'message' => "Invalid character inserted"
+                        ))
+                )
             ))
             ->add('domain',null,array(
                 'label' => 'Translation Domain',
                 //'empty_data' => 'messages',
                 'disabled' => false,
-                'constraints' => array(new NotBlank(array('message' => 'You have to define the domain of translation. ex: messages')))
+                'constraints' => array(
+                    new NotBlank(array('message' => 'You have to define the domain of translation. ex: messages')),
+                    new Regex(array(
+                        'pattern' => "/[\\/\\\\\|\?&\"$]/",
+                        'match' => false,
+                        'message' => "Invalid character inserted"
+                        )))
             ))
             #->add('updateAt','date')
         ;
