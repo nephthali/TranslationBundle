@@ -58,6 +58,7 @@ Alternativamente per Gestire le traduzioni
 framework:
     # ...
     translator: { fallbacks: ['%locale%'] }
+
 parameters:
     # ...
     locale:     en
