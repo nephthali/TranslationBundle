@@ -10,6 +10,12 @@ class CinecaTranslationManager
 {
     private $entityClassName;
     private $entityManager;
+    protected $tableColumnRquired = array(
+        'key' => 'key',
+        'translation' => 'translation',
+        'locale' => 'locale',
+        'domain' => 'domain'
+    );
 
     private $container;
 
@@ -22,6 +28,9 @@ class CinecaTranslationManager
     }
 
     public function setContainer(ContainerInterface $container) {
+        //Check Translation Table columns defined
+        $this->auditTranslationTable();
+
         $this->container = $container;
         return $this;
     }
@@ -69,6 +78,19 @@ class CinecaTranslationManager
     public function getEntityTableMapping()
     {
         return $this->getClassMetadata()->getTableName();
+    }
+
+    private function auditTranslationTable()
+    {
+        $translationReflection = $this->getClassMetadata();
+        $translationTableColums = $translationReflection->getColumnNames();
+        $checkColumnRequired = array_intersect($this->tableColumnRquired, $translationTableColums);
+
+        if(empty($checkColumnRequired))
+            throw new \RuntimeException(sprintf('%s need this columns [%s] to be defined .',$this->getEntityTableMapping(),implode(",",array_keys($this->tableColumnRquired))));
+
+        if(count($checkColumnRequired) < 4)
+            throw new \RuntimeException(sprintf('%s need this columns [%s] to be defined .',$this->getEntityTableMapping(),implode(",",array_keys($this->tableColumnRquired))));
     }
 
 }
