@@ -53,11 +53,31 @@ Alternativamente per Gestire le traduzioni
 
 <b>Il bundle richiede una entity che mappa la tabella delle traduzioni</b>
 
+* <b>Abilitare la componente translator </b>
+<pre>
+framework:
+    # ...
+    translator: { fallbacks: ['%locale%'] }
+parameters:
+    # ...
+    locale:     en
+</pre>
+
 * <b>Aggiungere nel file di configuration dell'applicazione</b>
 <pre>
     cineca_translation:
         translation_classes:
             translation: "path della entity" ##AppBundle\Entity\Translation
+</pre>
+
+* <b>Aggiungere la route per accedere all'interfaccia di gestione delle traduzioni </b>
+<pre>
+///file di routing.yml
+cineca_translation:
+    resource: "@CinecaTranslationBundle/Resources/config/routing.xml"
+    prefix: /your_prefix
+    options:
+        i18n: true
 </pre>
 
 
