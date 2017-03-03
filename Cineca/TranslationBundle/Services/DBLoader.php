@@ -16,6 +16,7 @@ class DBLoader implements LoaderInterface, ResourceInterface
 {
     private $translator;
     private $translationClass;
+    private $translationManager;
     private $languageClass;
     private $container;
     private $connection;
@@ -51,6 +52,7 @@ class DBLoader implements LoaderInterface, ResourceInterface
 
         $this->container             = $container;
         $this->translationClass = $this->container->getParameter("cineca_translation.translation_classes.translation");
+        $this->translationManager = $this->container->get("cineca_translation.manager");
         //$this->languageClass    = $this->container->get("cineca_translation.language");
         $this->connection = $dbalConnection;
         $this->options = array_replace_recursive($this->options, $options);
@@ -236,7 +238,15 @@ class DBLoader implements LoaderInterface, ResourceInterface
 
     public function getTablename()
     {
-        return $this->options['table'];
+        if(class_exists($this->translationClass))
+        {
+            return $this->translationManager->getEntityTableMapping();
+        }
+        else
+        {
+
+            return $this->options['table'];
+        }
     }
 
     public function getColumnname($column)
