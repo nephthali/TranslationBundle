@@ -75,7 +75,7 @@ Alternativamente per Gestire le traduzioni
     #...
     parameters:
         # ...
-        locale:     en
+        locale:     it
 </pre>
 
 * <b>Aggiungere nel file di configuration dell'applicazione</b>
