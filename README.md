@@ -49,6 +49,16 @@ Alternativamente per Gestire le traduzioni
     );
     </pre>
 
+* <b>Alternativamente abitare il bundle KnpPaginatorBundle per gestire le traduzioni</b>
+    <pre>
+    // in AppKernel::registerBundles()
+    $bundles = array(
+        // ...
+        new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+        // ...
+    );
+    </pre>
+
 ### <u>Configurazione</u> ###
 
 * <b>Importante creare il file col formato <code>domain.locale.extension</code> nella cartella <code>app/Resources/translations</code> dell'applicazione.</b>
