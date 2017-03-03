@@ -39,7 +39,7 @@ Alternativamente per Gestire le traduzioni
     Oppure
     <code>composer update</code>
 
-* <b>Abitare il bundle nell'applicazione</b>
+* <b>Abilitare il bundle nell'applicazione</b>
     <pre>
     // in AppKernel::registerBundles()
     $bundles = array(

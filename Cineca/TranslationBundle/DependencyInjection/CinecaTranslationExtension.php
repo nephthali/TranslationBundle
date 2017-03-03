@@ -34,7 +34,7 @@ class CinecaTranslationExtension extends Extension implements PrependExtensionIn
         //Check tranlation classes
         if(empty($config['translation_classes']))
         {
-            throw new \RuntimeException('Cineca Translation bundle need classes to map translation.');
+            throw new \RuntimeException('Cineca Translation bundle need classes to map translation. In order to process add classes under configuration of this bundle ');
         }
 
         /*
@@ -47,7 +47,7 @@ class CinecaTranslationExtension extends Extension implements PrependExtensionIn
 
         if(isset($config['translation_classes']) && empty($config['translation_classes']['translation']))
         {
-            throw new \RuntimeException('Cineca Translation bundle need translation class to map translation messages.');
+            throw new \RuntimeException('Cineca Translation bundle need translation class to map translation messages.In order to process add translation class under configuration of this bundle');
         }
 
         /*
