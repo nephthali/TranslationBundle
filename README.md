@@ -96,4 +96,6 @@ Alternativamente per Gestire le traduzioni
             i18n: true
 </pre>
 
+* <b>Altra documentation </b>
+
 
