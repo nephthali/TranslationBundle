@@ -49,7 +49,7 @@ Alternativamente per Gestire le traduzioni
     );
     </pre>
 
-* <b>Alternativamente abitare il bundle KnpPaginatorBundle per gestire le traduzioni</b>
+* <b>Alternativamente abilitare il bundle KnpPaginatorBundle per gestire le traduzioni</b>
     <pre>
     // in AppKernel::registerBundles()
     $bundles = array(
@@ -96,6 +96,5 @@ Alternativamente per Gestire le traduzioni
             i18n: true
 </pre>
 
-* <b>Altra documentation </b>
 
 
