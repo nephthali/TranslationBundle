@@ -14,9 +14,9 @@
     ],
     "require": {
         "symfony/symfony": "2.8.*",
-        "doctrine/orm": "^2.4.8",
+        "doctrine/orm": "~2.4.8",
         "doctrine/doctrine-bundle": "~1.4",
-        "knplabs/knp-paginator-bundle": "^2.5"
+        "knplabs/knp-paginator-bundle": "~2.5"
     },
     "autoload": {
         "psr-4": {
