@@ -23,10 +23,6 @@
             "Cineca\\TranslationBundle\\": "Cineca/TranslationBundle/"
         }
     },
-    "repositories": [{
-        "type": "git",
-        "url": "https://git-miur.cineca.it/ndjabont/TranslationBundle.git"
-    }],
     "extra": {
         "branch-alias": {
             "dev-master": "v1.0-dev"
