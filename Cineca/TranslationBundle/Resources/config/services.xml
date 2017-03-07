@@ -87,12 +87,12 @@
             </call>
             <tag name="translation.loader" alias="db"/>
         </service>
-        <!--service id="cineca_translation.dumper" class="Cineca\TranslationBundle\Services\DBDumper"-->
+        <service id="cineca_translation.dumper" class="Cineca\TranslationBundle\Services\DBDumper">
             <!--argument type="service" id="doctrine.orm.entity_manager" /-->
             <!--argument type="service" id="cineca_translation.connection" /-->
             <!--argument type="service" id="service_container" /-->
             <!--tag name="translation.dumper" alias="db"/-->
-        <!--/service-->
+        </service>
         <service id="cineca_translation.form.type.translation" class="Cineca\TranslationBundle\Form\TranslationType">
             <argument>%locale_array%</argument>
             <tag name="form.type" />
