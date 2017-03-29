@@ -9,38 +9,71 @@ use Cineca\TranslationBundle\Model\Translation;
 
 class DefaultController extends Controller
 {
-    public function indexAction()
+    public function indexAction(Request $request, $search_query_b = null)
     {
         //get doctrine
         $dm = $this->get('doctrine')->getManager();
 
-        //get the page
-        $page = $this->getRequest()->get('page');
+        //translation class name
+        $translationEntityManager = $this->get('cineca_translation.manager');
 
         //varible use to paginate
         $paginator = null;
 
-        //translation class name
-        $translationEntityManager = $this->get('cineca_translation.manager');
-
-        //$entityClassName = $this->getParameter('cineca_translation.translation_classes.translation');
-        $entityClassName = $translationEntityManager->getEntityClassName();
-        if(empty($entityClassName))
-        {
-            throw new \RuntimeException("This bundle need an entity class name defined under configuration file ");
+        //Get search criteria
+        $criteria = array();
+        if ($request->query->get('term')) {
+            $criteria['term'] = $request->query->get('term');
         }
 
-        //$classMetadata = $dm->getClassMetadata($entityClassName);
-        $classMetadata = $translationEntityManager->getClassMetadata($entityClassName);
-        if(class_exists($classMetadata))
-        {
-            throw new \RuntimeException("This bundle need an entity class name defined under configuration file ");
-        }
-        else
-            $repositoryClass = $translationEntityManager->getRepositoryClass();
-            //$repositoryClass = $dm->getRepository($classMetadata->getReflectionClass()->getName());
+        // construct dsearch form
+        $fb = $this->createFormBuilder();
+        $fb ->add('term', 'text', array(
+                    'label'=>'Search',
+                    'required' => true,
+                    'data' => isset($criteria['term']) ? $criteria['term'] : NULL,
+                    'constraints' => array(new \Symfony\Component\Validator\Constraints\NotBlank(
+                        array( 'message' => 'what are you searching ?')
+                        )),
+        ));
 
-        $translationsDefined = $repositoryClass->findAll();
+        $form = $fb->getForm();
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $criteria = null;
+            $criteria = $form->getData();
+        }
+
+        $checkClassDefinition = $this->checkEntityClassExist($translationEntityManager);
+
+        if (!empty($criteria)) {
+
+            if($checkClassDefinition)
+            {
+                $search_query_b = $this->searchQB($criteria,$translationEntityManager);
+                $translationsDefined = $search_query_b;
+                preg_match('/&page=(\d+)/', $this->get('request')->getQueryString(), $matches);
+                $page = (!empty($matches)) ? $matches[1] : 1;
+
+                //get the page
+                //$page = $this->getRequest()->get('page');
+            }
+
+        } else {
+
+            if($checkClassDefinition)
+                $repositoryClass = $translationEntityManager->getRepositoryClass();
+                //$repositoryClass = $dm->getRepository($classMetadata->getReflectionClass()->getName());
+
+            $translationsDefined = $repositoryClass->findAll();
+
+            $page = $this->get('request')->query->get('page', 1);
+
+            //get the page
+            //$page = $this->getRequest()->get('page');
+        }
+
 
         $paginatorCheck = $this->hasPaginatorBundle();
 
@@ -60,14 +93,66 @@ class DefaultController extends Controller
                 $translationsDefined,
                 $page,
                 10 /*Limit per page*/
-
             );
+
+            if (!empty($criteria)) {
+                $pagination->setParam('term', $criteria['term']);
+            }
         }
 
         // This Action will be need to return all translation
         return $this->render('CinecaTranslationBundle:Default:index.html.twig',array(
-            'pagination' => isset($pagination) ? $pagination : null
+            'pagination' => isset($pagination) ? $pagination : null,
+            //'totaltranslation' => isset($pagination) ? $pagination->getTotalItemCount() : 0,
+            'criteria' => $criteria,
+            'form' => $form->createView(),
         ));
+    }
+
+    private function searchQB($criteria, $translationEntityManager)
+    {
+        $qb = null;
+
+        $search_fields = array(
+            'all' => 'all',
+            't.key' => 'key',
+            't.translation' => 'translation',
+            't.domain' => 'domain',
+            't.id' => 'id',
+        );
+
+        if ($criteria['term']) {
+
+            $term = $criteria['term'];
+            //$field = $criteria['field'];
+            $field = $search_fields['all'];
+            //remove first element 'all' from the $search_fields array: it's not a real field...
+            $search_on = ($field == 'all') ?  array_slice(array_keys($search_fields),1) : array($field);
+
+
+            $repositoryClass = $translationEntityManager->getRepositoryClass();
+            $qb = $repositoryClass->createQueryBuilder('t');
+
+            $searchterm = '%'.strtolower($term).'%';
+
+            foreach ($search_on as $f) {
+                if ($f != 't.id') {
+                    $qb->orWhere($qb->expr()->like(
+                         $qb->expr()->lower($f),
+                         ':searchterm')
+                    );
+                    $qb->setParameter('searchterm', $searchterm);
+                } else {
+                    if (preg_match('/^\d+$/', $term)) {
+                        $qb->orWhere('t.id = '.intval($term));
+                    }
+                }
+            }
+
+            $qb->orderBy('t.key', 'DESC');
+
+         }
+         return $qb;
     }
 
     /**
@@ -241,5 +326,25 @@ class DefaultController extends Controller
            return true;
        }
        return false;
+    }
+
+    /*Check Entity and class existence*/
+    private function checkEntityClassExist($class)
+    {
+        //$entityClassName = $this->getParameter('cineca_translation.translation_classes.translation');
+        $entityClassName = $class->getEntityClassName();
+        if(empty($entityClassName))
+        {
+            throw new \RuntimeException("This bundle need an entity class name defined under configuration file ");
+        }
+
+        //$classMetadata = $dm->getClassMetadata($entityClassName);
+        $classMetadata = $class->getClassMetadata($entityClassName);
+        if(!class_exists($classMetadata))
+        {
+            throw new \RuntimeException("This bundle need an entity class name defined under configuration file ");
+        }
+        else
+            return true;
     }
 }
