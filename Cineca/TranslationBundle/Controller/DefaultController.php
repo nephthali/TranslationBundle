@@ -69,10 +69,10 @@ class DefaultController extends Controller
 
             $translationsDefined = $repositoryClass->findAll();
 
-            $page = $this->get('request')->query->get('page', 1);
+            //$page = $this->get('request')->query->get('page', 1);
 
             //get the page
-            //$page = $this->getRequest()->get('page');
+            $page = $this->getRequest()->get('page');
         }
 
 
