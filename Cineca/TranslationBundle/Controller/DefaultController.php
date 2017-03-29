@@ -28,6 +28,7 @@ class DefaultController extends Controller
 
         // construct dsearch form
         $fb = $this->createFormBuilder();
+        $fb->setAction($this->generateUrl($request->get('_route')));
         $fb ->add('term', 'text', array(
                     'label'=>'Search',
                     'required' => true,
@@ -340,7 +341,7 @@ class DefaultController extends Controller
 
         //$classMetadata = $dm->getClassMetadata($entityClassName);
         $classMetadata = $class->getClassMetadata($entityClassName);
-        if(!class_exists($classMetadata,false))
+        if(!$classMetadata->isRootEntity())
         {
             throw new \RuntimeException("This bundle need an entity class name defined under configuration file ");
         }

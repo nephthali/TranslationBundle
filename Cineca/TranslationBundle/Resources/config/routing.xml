@@ -4,7 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="cineca_translation_homepage" path="/{page}" methods="GET">
+    <route id="cineca_translation_homepage" path="/{page}" methods="GET|POST">
         <default key="_controller">CinecaTranslationBundle:Default:index</default>
         <default key="page">1</default>
         <requirement key="page">\d+</requirement>
