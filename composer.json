@@ -12,6 +12,10 @@
     "license": [
         "MIT"
     ],
+    "repositories": [{
+        "type": "composer",
+        "url": "http://miur-home.dev.cineca.it/satis/html"
+    }],
     "require": {
         "symfony/symfony": "2.8.*",
         "doctrine/orm": "~2.4.8",
