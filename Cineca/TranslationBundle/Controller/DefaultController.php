@@ -340,7 +340,7 @@ class DefaultController extends Controller
 
         //$classMetadata = $dm->getClassMetadata($entityClassName);
         $classMetadata = $class->getClassMetadata($entityClassName);
-        if(!class_exists($classMetadata))
+        if(!class_exists($classMetadata,false))
         {
             throw new \RuntimeException("This bundle need an entity class name defined under configuration file ");
         }
