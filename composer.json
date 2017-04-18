@@ -1,10 +1,10 @@
 {
-    "name": "cineca/translationbundle",
+    "name": "ennva/translationbundle",
     "description": "translation bundle from Database",
     "type": "symfony-bundle",
     "authors": [{
         "name": "nephthali djabon tchounda",
-        "email": "neph@cineca.it"
+        "email": "nephthali@libero.it"
     }],
     "keywords": [
         "translation bundle"
@@ -12,10 +12,6 @@
     "license": [
         "MIT"
     ],
-    "repositories": [{
-        "type": "composer",
-        "url": "http://miur-home.dev.cineca.it/satis/html"
-    }],
     "require": {
         "symfony/symfony": "2.8.*",
         "doctrine/orm": "~2.4.8",
@@ -24,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Cineca\\TranslationBundle\\": "Cineca/TranslationBundle/"
+            "Ennva\\TranslationBundle\\": "Cineca/TranslationBundle/"
         }
     },
     "extra": {
