@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Ennva\\TranslationBundle\\": "Cineca/TranslationBundle/"
+            "Ennva\\TranslationBundle\\": "Ennva/TranslationBundle/"
         }
     },
     "extra": {
