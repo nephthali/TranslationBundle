@@ -1,4 +1,4 @@
-# CinecaTranslationBundle #
+# TranslationBundle #
 
 ## Introduction ##
 Questo bundle affronta i concetti di internalizzazione e localizzazione. Adatti  alle applicazioni Symfony.
@@ -25,13 +25,10 @@ Alternativamente per Gestire le traduzioni
 
 * <b>Aggiungere Nel file composer.json del progetto</b>
   <pre>
-    "repositories": [{
-        "type": "composer",
-        "url": "http://miur-home.dev.cineca.it/satis/html"
-    }],
+    ....
     "require" : {
        // ...
-       "cineca/translationbundle": "dev-master"
+       "Ennva/translationbundle": "dev-master"
     }
   </pre>
 * <b>Installare o aggiornare le librerie con composer</b>
@@ -44,7 +41,7 @@ Alternativamente per Gestire le traduzioni
     // in AppKernel::registerBundles()
     $bundles = array(
         // ...
-        new Cineca\TranslationBundle\CinecaTranslationBundle(),
+        new Ennva\TranslationBundle\EnnvaTranslationBundle(),
         // ...
     );
     </pre>
@@ -81,7 +78,7 @@ Alternativamente per Gestire le traduzioni
 * <b>Aggiungere nel file di configuration dell'applicazione</b>
 <pre>
     # ...config.yml
-    cineca_translation:
+    Ennva_translation:
         translation_classes:
             translation: "path della entity" ##AppBundle\Entity\Translation
 </pre>
@@ -89,8 +86,8 @@ Alternativamente per Gestire le traduzioni
 * <b>Aggiungere la route per accedere all'interfaccia di gestione delle traduzioni. Preferibilmente sotto firewall </b>
 <pre>
     # ... routing.yml
-    cineca_translation:
-        resource: "@CinecaTranslationBundle/Resources/config/routing.xml"
+    Ennva_translation:
+        resource: "@EnnvaTranslationBundle/Resources/config/routing.xml"
         prefix: /your_prefix
         options:
             i18n: true
